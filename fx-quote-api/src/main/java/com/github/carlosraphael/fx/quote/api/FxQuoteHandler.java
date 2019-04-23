@@ -41,7 +41,7 @@ public class FxQuoteHandler {
     private Mono<ServerResponse> defaultWriteOperationHandler(Publisher<FxQuote> quotes) {
         return Mono.from(quotes)
                 .flatMap(fxQuote -> ServerResponse
-                        .created(URI.create("/quotes/" + fxQuote.getId()))
+                        .created(URI.create(Router.URI + "/" + fxQuote.getId()))
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .build()
                 );

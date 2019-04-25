@@ -100,8 +100,8 @@ public class FxRateHandlerTest {
 
     private MockServerRequest mockServerRequest(Currency sourceCurrency, Currency targetCurrency) {
         return MockServerRequest.builder()
-                .attribute("source", sourceCurrency != null ? sourceCurrency.getCurrencyCode() : "")
-                .attribute("target", targetCurrency != null ? targetCurrency.getCurrencyCode() : "")
+                .queryParam("source", sourceCurrency != null ? sourceCurrency.getCurrencyCode() : "")
+                .queryParam("target", targetCurrency != null ? targetCurrency.getCurrencyCode() : "")
                 .build();
     }
 }

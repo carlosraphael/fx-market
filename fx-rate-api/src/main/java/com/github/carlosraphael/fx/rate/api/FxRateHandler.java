@@ -36,14 +36,10 @@ public class FxRateHandler {
         return getCurrency(serverRequest, "target");
     }
 
-    private Currency getCurrency(ServerRequest serverRequest, String attributeName) {
-        return Currency.getInstance(serverRequest.attribute(attributeName)
-                .map(this::trimToNull)
-                .orElseThrow(() -> new ServerWebInputException("Missing " + attributeName + " currency"))
+    private Currency getCurrency(ServerRequest serverRequest, String name) {
+        return Currency.getInstance(serverRequest.queryParam(name)
+                .map(StringUtils::trimToNull)
+                .orElseThrow(() -> new ServerWebInputException("Missing " + name + " currency"))
         );
-    }
-
-    private String trimToNull(Object object) {
-        return object == null ? null : StringUtils.trimToNull(object.toString());
     }
 }

@@ -8,7 +8,7 @@ import java.time.OffsetDateTime;
 import java.util.Currency;
 
 @Value @Builder
-public class Rate {
+public class FxRate {
 
     private final BigDecimal rate;
     private final Currency source;

@@ -1,7 +1,8 @@
 package com.github.carlosraphael.fx.quote.service.impl;
 
-import com.github.carlosraphael.fx.quote.domain.Rate;
-import com.github.carlosraphael.fx.quote.service.RateService;
+import com.github.carlosraphael.fx.quote.domain.FxRate;
+import com.github.carlosraphael.fx.quote.service.FxRateService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -12,21 +13,17 @@ import java.util.Currency;
 import static com.google.common.collect.ImmutableMap.of;
 
 @Service
-public class RateServiceImpl implements RateService {
+@RequiredArgsConstructor
+public class FxRateServiceImpl implements FxRateService {
 
     private final WebClient webClient;
 
-    // TODO: setup api token access and base URL
-    public RateServiceImpl(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.build();
-    }
-
     @Override
-    public Mono<Rate> getRate(Currency source, Currency target) {
+    public Mono<FxRate> getRate(Currency source, Currency target) {
         return webClient.get()
                 .uri("/rates", of("source", source.getCurrencyCode(), "target", target.getCurrencyCode()))
-                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
-                .bodyToMono(Rate.class);
+                .bodyToMono(FxRate.class);
     }
 }

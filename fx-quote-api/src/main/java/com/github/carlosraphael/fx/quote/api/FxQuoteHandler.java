@@ -1,6 +1,5 @@
 package com.github.carlosraphael.fx.quote.api;
 
-import com.github.carlosraphael.fx.quote.domain.CreateQuote;
 import com.github.carlosraphael.fx.quote.domain.FxQuote;
 import com.github.carlosraphael.fx.quote.service.FxQuoteService;
 import lombok.AllArgsConstructor;
@@ -21,9 +20,8 @@ public class FxQuoteHandler {
 
     public Mono<ServerResponse> createQuote(ServerRequest request) {
         return defaultWriteOperationHandler(
-                request.bodyToFlux(CreateQuote.class).flatMap(fxQuoteService::create)
+                request.bodyToFlux(FxQuote.class).flatMap(fxQuoteService::create)
         );
-
     }
 
     public Mono<ServerResponse> getQuoteById(ServerRequest request) {
@@ -52,5 +50,4 @@ public class FxQuoteHandler {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .body(quotes, FxQuote.class);
     }
-
 }

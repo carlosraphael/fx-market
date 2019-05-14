@@ -22,7 +22,7 @@ public class FxRateServiceImpl implements FxRateService {
 
     private final WebClient webClient;
 
-    @Value("${rate.api.URI}")
+    @Value("${fxRate.api.URI}")
     private UriTemplate uriTemplate;
 
     @Override

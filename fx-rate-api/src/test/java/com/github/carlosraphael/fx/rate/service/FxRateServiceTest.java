@@ -37,8 +37,8 @@ import static org.mockito.Mockito.verify;
 @EnableCaching
 @Import({WebClientConfig.class, FxRateServiceImpl.class})
 @TestPropertySource(properties = {
-        "rate.api.URI=/api/v7/convert?q={currencyQuery}&compact=ultra&apiKey=API_KEY",
-        "rate.api.baseURL=http://localhost:24596",
+        "fxRate.api.URI=/api/v7/convert?q={currencyQuery}&compact=ultra&apiKey=API_KEY",
+        "fxRate.api.baseURL=http://localhost:24596",
         "spring.cache.cache-names=rates",
         "spring.cache.caffeine.spec=maximumSize=500,expireAfterWrite=60s"
 })

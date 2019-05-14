@@ -1,6 +1,7 @@
 package com.github.carlosraphael.fx.quote.domain;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Table
 @Value @Builder
+@EqualsAndHashCode(of = "id")
 public class FxQuote {
 
     private static final int QUOTE_VALIDITY_IN_MINUTES = 30;
